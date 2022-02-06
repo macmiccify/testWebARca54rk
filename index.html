@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
@@ -10,15 +10,18 @@
                 init: function () {
                     var marker = this.el;
                     this.vid = document.querySelector("#vid");
+                    this.aud = document.querySelector("#aud");
 
                     marker.addEventListener('markerFound', function () {
                         this.toggle = true;
                         this.vid.play();
+                        this.aud.play();
                     }.bind(this));
 
                     marker.addEventListener('markerLost', function () {
                         this.toggle = false;
                         this.vid.pause();
+                        this.aud.pause();
                     }.bind(this));
                 },
             });
@@ -47,6 +50,19 @@
                     muted
                     playsinline
                 ></video>
+                <audio 
+                       id="eventspace" 
+                       src="assets/eventspace.mp3" 
+                       preload="auto"
+                       preload="auto"
+                       response-type="arraybuffer"
+                       loop
+                       crossorigin
+                       webkit-playsinline
+                       autoplay
+                       muted
+                       playsinline
+                    ></audio>
             </a-assets>
 
             <a-marker
@@ -71,6 +87,7 @@
                     class="clickable"
                     gesture-handler
                 ></a-video>
+                <a-entity sound="src: #eventspace"></a-entity>
             </a-marker>
 
             <a-entity camera></a-entity>
