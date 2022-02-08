@@ -3,6 +3,7 @@
     <head>
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://unpkg.com/aframe-play-sound-on-event@1.0.2/dist/aframe-play-sound-on-event.min.js"></script> 
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
         <script>
@@ -79,7 +80,12 @@
                     class="clickable"
                     gesture-handler
                 ></a-video>
-                <a—sound src="#aud" autoplay="true"><a-sound>
+            <a-entity
+                sound="src: #aud"
+                play-sound-on-event="mode: toggle-stop; event: click"
+                >
+    </a-entity>
+
             </a-marker>
             <a-entity camera></a-entity>
         </a-scene>
